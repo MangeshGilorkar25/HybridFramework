@@ -15,11 +15,11 @@ class TestLogin(WebDriverWrapper):
         assert_that("OpenEMR Login").is_equal_to(actual_title)
 
     def test_invalid_login(self):
-        self.driver.find_element(By.ID, "authUser").send_keys("admin")
-        self.driver.find_element(By.ID, "clearPass").send_keys("pass1234")
-        self.driver.find_element(By.XPATH, "//button[@id='login-button']").click()
-        actual_error = self.driver.find_element(By.XPATH, "//p[@class='text-danger font-weight-bold']")
-        assert_that("Invalid username or password").contains(actual_error)
+        self.driver.find_element(By.ID, "authUser").send_keys("john")
+        self.driver.find_element(By.CSS_SELECTOR, "#clearPass").send_keys("john123")
+        self.driver.find_element(By.ID, "login-button").click()
+        actual_error=self.driver.find_element(By.XPATH,"//p[contains(text(),'Invalid')]").text
+        assert_that(actual_error).contains("Invalid username or password")
 
 
 
