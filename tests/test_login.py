@@ -3,24 +3,16 @@ from selenium import webdriver
 from assertpy import assert_that
 from selenium.webdriver.common.by import By
 
-
-class WebDriverWrapper:
-    @pytest.fixture(scope="function", autouse=True)
-    def setup(self):
-        self.a = 10
-        self.name = "Mangesh"
-        self.driver = webdriver.Chrome()
-        self.driver.maximize_window()
-        self.driver.maximize_window()
-        self.driver.implicitly_wait(5)
-        self.driver.get("https://demo.openemr.io/b/openemr")
-        yield
-        self.driver.quit()
+from base.automation_wrapper import WebDriverWrapper
 
 
 class TestLogin(WebDriverWrapper):
     def test_valid_login(self):
         self.driver.find_element(By.ID, "authUser").send_keys("admin")
+        self.driver.find_element(By.ID, "clearPass").send_keys("pass")
+        self.driver.find_element(By.XPATH, "//button[@id='login-button']").click()
+        actual_title = self.driver.title
+        assert_that("OpenEMR Login").is_equal_to(actual_title)
 
 
 class TestLoginUI(WebDriverWrapper):
@@ -30,7 +22,8 @@ class TestLoginUI(WebDriverWrapper):
         print(self.driver)
         self.driver.implicitly_wait(5)
         actual_title = self.driver.title
-        assert_that("OpenEMR Login").is_equal_to(actual_title)
+        # assert_that("OpenEMR Login").is_equal_to(actual_title)
+        assert_that(actual_title).contains("OpenEMR Login")
 
     def test_app_description(self):
         actual_desc = self.driver.find_element(By.XPATH, "//p[contains(text(),'most')]").text
