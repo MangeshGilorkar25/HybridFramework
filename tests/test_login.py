@@ -4,8 +4,7 @@ from assertpy import assert_that
 from selenium.webdriver.common.by import By
 
 
-class TestLoginUI:
-
+class WebDriverWrapper:
     @pytest.fixture(scope="function", autouse=True)
     def setup(self):
         self.a = 10
@@ -17,6 +16,14 @@ class TestLoginUI:
         self.driver.get("https://demo.openemr.io/b/openemr")
         yield
         self.driver.quit()
+
+
+class TestLogin(WebDriverWrapper):
+    def test_valid_login(self):
+        self.driver.find_element(By.ID, "authUser").send_keys("admin")
+
+
+class TestLoginUI(WebDriverWrapper):
 
     def test_title(self):
         print(self.a)
