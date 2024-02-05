@@ -4,14 +4,11 @@ from assertpy import assert_that
 from selenium.webdriver.common.by import By
 
 from base.automation_wrapper import WebDriverWrapper
+from utils.data_utils import DataSource
 
 
 class TestLogin(WebDriverWrapper):
-    @pytest.mark.parametrize("username, password, expected_title",
-                             [
-                                 ("admin", "pass", "OpenEMR"),
-                                 ("accountant", "accountant", "OpenEMR")
-                             ]
+    @pytest.mark.parametrize("username, password, expected_title", DataSource.data_valid_login
                              )
     def test_valid_login(self, username, password, expected_title):
         self.driver.find_element(By.ID, "authUser").send_keys(username)
