@@ -1,8 +1,11 @@
 from selenium.webdriver.common.by import By
 
+from base.webdriver_keywords import WebDriverKeywords
 
-class MainPage:
+
+class MainPage(WebDriverKeywords):
     def __init__(self, driver):
+        super().__init__(driver)
         self.__driver = driver
 
     @property
