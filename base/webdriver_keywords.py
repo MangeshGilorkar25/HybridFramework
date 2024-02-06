@@ -9,7 +9,7 @@ class WebDriverKeywords:
         self.__driver = driver
         self.__wait = WebDriverWait(driver, 30)
 
-    def type_on_element(self, locator: Tuple[str, str], text:str):
+    def type_on_element(self, locator: Tuple[str, str], text: str):
         self.__wait.until(
             expected_conditions.visibility_of_element_located(locator)).send_keys(text)
 
@@ -21,9 +21,9 @@ class WebDriverKeywords:
         return self.__wait.until(
             expected_conditions.visibility_of_element_located(locator)).text
 
-    def get_attribute_from_element(self, locator: Tuple[str, str],attribute_name: str):
+    def get_attribute_from_element(self, locator: Tuple[str, str], attribute_name: str):
         return self.__wait.until(
             expected_conditions.visibility_of_element_located(locator)).get_attribute(attribute_name)
 
-    #switch_tab_by_title()
-    #get_text_and_handle_alert()
+    # switch_tab_by_title()
+    # get_text_and_handle_alert()
