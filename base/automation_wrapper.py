@@ -1,18 +1,24 @@
 import pytest
 from selenium import webdriver
-from assertpy import assert_that
-from selenium.webdriver.common.by import By
+
+from utils import read_utils
 
 
 class WebDriverWrapper:
     @pytest.fixture(scope="function", autouse=True)
     def setup(self):
-        self.a = 10
-        self.name = "Mangesh"
-        self.driver = webdriver.Chrome()
+        self.json_config=read_utils.get_json_as_dic(json_location="../test_data/config.json")
+        browser = self.json_config["browser"]
+        if browser == "ff":
+            self.driver = webdriver.Firefox()
+        elif browser == "edge":
+            self.driver = webdriver.Edge()
+        else:
+            self.driver = webdriver.Chrome()
+
         self.driver.maximize_window()
         self.driver.maximize_window()
         self.driver.implicitly_wait(5)
-        self.driver.get("https://demo.openemr.io/b/openemr")
+        self.driver.get(self.json_config["url"])
         yield
         self.driver.quit()
