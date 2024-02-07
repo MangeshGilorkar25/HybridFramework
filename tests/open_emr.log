@@ -1,0 +1,12 @@
+2024-02-07 06:30:34 INFO Launched browser ch and navigated to https://demo.openemr.io/b/openemr
+2024-02-07 06:30:34 INFO Entered username as receptionist
+2024-02-07 06:30:34 INFO Entered password as receptionist
+2024-02-07 06:30:42 INFO Clicked on login
+2024-02-07 06:30:42 INFO Actual title OpenEMR
+2024-02-07 06:30:42 INFO Test Passed for receptionist
+2024-02-07 06:30:53 INFO Launched browser ch and navigated to https://demo.openemr.io/b/openemr
+2024-02-07 06:30:53 INFO Entered username as physician
+2024-02-07 06:30:53 INFO Entered password as physician
+2024-02-07 06:31:01 INFO Clicked on login
+2024-02-07 06:31:01 INFO Actual title OpenEMR
+2024-02-07 06:31:01 INFO Test Passed for physician
